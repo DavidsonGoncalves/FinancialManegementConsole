@@ -19,7 +19,8 @@ namespace FinancialManegementConsole.Entities
         {
             Items.Add(item);
         }
-        public void RemoveItem(int id)
+
+        /*public void RemoveItem(int id)
         {
             foreach (Item item in Items)
             {
@@ -29,6 +30,7 @@ namespace FinancialManegementConsole.Entities
                 }
             }
         }
+        */
         public void UpdateBalance()
         {
           foreach(Item item in Items)

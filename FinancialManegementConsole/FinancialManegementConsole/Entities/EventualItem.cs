@@ -1,5 +1,4 @@
-﻿
-using FinancialManegementConsole.Entities.Enums;
+﻿using FinancialManegementConsole.Entities.Enums;
 
 namespace FinancialManegementConsole.Entities
 {
