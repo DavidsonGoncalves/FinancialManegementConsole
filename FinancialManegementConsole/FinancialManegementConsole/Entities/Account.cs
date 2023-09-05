@@ -3,20 +3,21 @@ namespace FinancialManegementConsole.Entities
 {
     internal class Account
     {
-        public int Id { get; set; }
+        public Guid Id { get; private set; }
         public string Name { get; set; }
         public double Balance { get; set; }
 
         public List<Item> Items { get; set; } = new List<Item>();
         public Account(int id, string name, double balance)
         {
-            Id = id;
+            Id = Guid.NewGuid();
             Name = name;
             Balance = balance;
         }
 
        public void AddItem(Item item)
         {
+           
             Items.Add(item);
         }
 

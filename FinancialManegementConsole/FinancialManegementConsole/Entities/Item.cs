@@ -4,7 +4,7 @@ namespace FinancialManegementConsole.Entities
 {
     abstract class Item
     {
-        //public int Id { get; set; }
+        public Guid Id { get; set; }
         public Type_item Type { get; set; }
         public string Desctiption { get; set; }
         public Category Category { get; set; }
@@ -17,7 +17,7 @@ namespace FinancialManegementConsole.Entities
             Desctiption = desctiption;
             Category = category;
             Amount = amount;
-            
+            Id = Guid.NewGuid();
         }
     }
 }

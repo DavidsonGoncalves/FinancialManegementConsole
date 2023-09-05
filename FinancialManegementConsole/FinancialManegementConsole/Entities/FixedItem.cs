@@ -10,7 +10,7 @@ namespace FinancialManegementConsole.Entities
         public DateTime InitialDate { get; set; }
         public DateTime FinalDate { get; set; }
 
-        public FixedItem(DateTime initialDate, DateTime finalDate, Type_item type, string desctiption, Category category, double amount) : base(type, desctiption, category, amount)
+        public FixedItem(DateTime initialDate, DateTime finalDate, Guid id, Type_item type, string desctiption, Category category, double amount) : base( type, desctiption, category, amount)
         {
             InitialDate = finalDate;
             FinalDate = initialDate;

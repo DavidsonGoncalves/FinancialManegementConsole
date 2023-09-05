@@ -6,7 +6,7 @@ namespace FinancialManegementConsole.Entities
     {
         public DateTime Date { get; set; }
 
-        public EventualItem(DateTime date, Type_item type, string desctiption, Category category, double amount) : base(type, desctiption, category, amount)
+        public EventualItem(DateTime date,Type_item type, string desctiption, Category category, double amount) : base( type, desctiption, category, amount)
         {
             Date = date;
         }
