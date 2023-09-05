@@ -4,7 +4,7 @@ namespace FinancialManegementConsole.Entities
 {
     abstract class Item
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; private set; }
         public Type_item Type { get; set; }
         public string Desctiption { get; set; }
         public Category Category { get; set; }
