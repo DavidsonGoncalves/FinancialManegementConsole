@@ -13,3 +13,4 @@ namespace FinancialManegementConsole.Entities
 
     }
 }
+// Don`t Need this
