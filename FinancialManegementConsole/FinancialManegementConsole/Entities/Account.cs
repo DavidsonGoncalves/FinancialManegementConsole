@@ -1,4 +1,6 @@
 ﻿
+using System.Runtime.InteropServices;
+
 namespace FinancialManegementConsole.Entities
 {
     internal class Account
@@ -17,9 +19,11 @@ namespace FinancialManegementConsole.Entities
 
        public void AddItem(Item item)
         {
-           
             Items.Add(item);
+            UpdateBalance();
         }
+
+     
 
         /*public void RemoveItem(int id)
         {

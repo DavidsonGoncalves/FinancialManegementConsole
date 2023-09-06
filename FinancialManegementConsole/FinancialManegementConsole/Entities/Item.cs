@@ -9,7 +9,7 @@ namespace FinancialManegementConsole.Entities
         public string Desctiption { get; set; }
         public Category Category { get; set; }
         public double Amount { get; set; }
-        DateTime PostDate { get; set; }
+        public DateTime PostDate { get; set; }
 
 
         public Item(DateTime postDate, Type_item type, string desctiption, Category category, double amount)
