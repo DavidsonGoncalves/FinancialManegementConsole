@@ -1,7 +1,7 @@
 ﻿
 namespace FinancialManegementConsole.Entities.Enums
 {
-     enum Category
+     enum Category : int
     {
         Salary = 0,
         EventualIncome = 1,

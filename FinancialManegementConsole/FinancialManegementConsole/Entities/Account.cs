@@ -38,14 +38,7 @@ namespace FinancialManegementConsole.Entities
         */
         public void UpdateBalance(Item item)
         {
-                if(item.Type == 0)
-                {
-                    Balance = Balance - item.Amount;
-                }
-                else
-                {
-                    Balance = Balance + item.Amount;
-                }
+            Balance += (item.Type == 0) ? -item.Amount : item.Amount;
         }
 
         
