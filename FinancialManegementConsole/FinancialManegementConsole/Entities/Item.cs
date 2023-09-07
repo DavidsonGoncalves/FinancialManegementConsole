@@ -21,5 +21,10 @@ namespace FinancialManegementConsole.Entities
             Id = Guid.NewGuid();
             PostDate = postDate;
         }
+
+        public override string ToString()
+        {
+            return $" {PostDate} ; {Id} ; {Type} ; {Category} ; {Desctiption} ; {Amount}";
+        }
     }
 }

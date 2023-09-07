@@ -38,7 +38,7 @@ namespace FinancialManegementConsole
                     string op = Console.ReadLine();
                     if (op =="s")
                     {
-                       // DateTime newDate;
+                      
                         Console.Write("Enter with the months to repete: ");
                         int qtdMonths = int.Parse(Console.ReadLine());
                         for (int i = 0; i<qtdMonths;i++)

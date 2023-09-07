@@ -8,8 +8,9 @@ namespace FinancialManegementConsole.Entities
         
         public string Name { get; private set; }
         public double Balance { get; private set; }
-
+       
         public List<Item> Items { get; private set; } = new List<Item>();
+        private FilesData file = new FilesData();
         public Account(int id, string name, double balance)
         {
             
@@ -21,6 +22,7 @@ namespace FinancialManegementConsole.Entities
         {
             Items.Add(item);
             UpdateBalance(item);
+            file.SaveItem(item);
         }
 
      
