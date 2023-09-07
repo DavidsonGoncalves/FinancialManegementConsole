@@ -38,12 +38,14 @@ namespace FinancialManegementConsole
                     string op = Console.ReadLine();
                     if (op =="s")
                     {
+                       // DateTime newDate;
                         Console.Write("Enter with the months to repete: ");
                         int qtdMonths = int.Parse(Console.ReadLine());
                         for (int i = 0; i<qtdMonths;i++)
                         {
                             account.AddItem(new Item(date, (Type_item)Enum.Parse(typeof(Type_item), type), description, (Category)Enum.Parse(typeof(Category), category), amount));
-                            date.AddMonths(1);
+                            date = date.AddMonths(1);
+                           
                         }
                     }
                     else
