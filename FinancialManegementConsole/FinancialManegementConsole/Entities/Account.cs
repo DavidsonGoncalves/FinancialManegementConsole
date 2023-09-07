@@ -20,7 +20,7 @@ namespace FinancialManegementConsole.Entities
        public void AddItem(Item item)
         {
             Items.Add(item);
-            UpdateBalance();
+            UpdateBalance(item);
         }
 
      
@@ -36,19 +36,16 @@ namespace FinancialManegementConsole.Entities
             }
         }
         */
-        public void UpdateBalance()
+        public void UpdateBalance(Item item)
         {
-          foreach(Item item in Items)
-            {
                 if(item.Type == 0)
                 {
-                    Balance -= item.Amount;
+                    Balance = Balance - item.Amount;
                 }
                 else
                 {
-                    Balance += item.Amount;
+                    Balance = Balance + item.Amount;
                 }
-            }
         }
 
         
