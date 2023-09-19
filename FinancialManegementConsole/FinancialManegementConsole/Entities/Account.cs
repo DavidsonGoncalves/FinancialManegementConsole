@@ -29,6 +29,15 @@ namespace FinancialManegementConsole.Entities
 
         public void RemoveItem(string id)
         {
+            
+            foreach (var item in Items)
+            {
+                if(item.ID.ToString() == id)
+                {
+                    Items.Remove(item); break;
+                }
+            }
+            
             file.RemoveItem(id.ToString());
 
         }

@@ -46,7 +46,7 @@ namespace FinancialManegementConsole.Entities
             }
             if (!temppath.Exists)
             {
-                using (File.Create(temppath + @"\TempFile.txt")) ;
+                using (File.Create(temppath + @"\TempFile.txt"));
                 
             }
 
