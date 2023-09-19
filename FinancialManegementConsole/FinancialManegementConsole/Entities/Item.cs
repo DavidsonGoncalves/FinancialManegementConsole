@@ -4,7 +4,10 @@ namespace FinancialManegementConsole.Entities
 {
     internal class Item
     {
-        public Guid Id { get; private set; }
+        // public Guid Id { get; private set; }
+
+        private static int nextId=0;
+        public Guid ID { get; private set; }
         public Type_item Type { get; set; }
         public string Desctiption { get; set; }
         public Category Category { get; set; }
@@ -18,13 +21,13 @@ namespace FinancialManegementConsole.Entities
             Desctiption = desctiption;
             Category = category;
             Amount = amount;
-            Id = Guid.NewGuid();
             PostDate = postDate;
+            ID = Guid.NewGuid();
         }
 
         public override string ToString()
         {
-            return $" {PostDate} ; {Id} ; {Type} ; {Category} ; {Desctiption} ; {Amount}";
+            return $" {PostDate} ; {Type} ; {Category} ; {Desctiption} ; {Amount} ; {ID}";
         }
     }
 }

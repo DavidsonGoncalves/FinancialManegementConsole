@@ -53,6 +53,13 @@ namespace FinancialManegementConsole
                        account.AddItem(new Item(date, (Type_item)Enum.Parse(typeof(Type_item), type), description, (Category)Enum.Parse(typeof(Category), category), amount));
                     }
                     break;
+
+                case 2:
+                    Console.Write("Enter with the id item to remove: ");
+                    var id = Console.ReadLine();
+                    account.RemoveItem(id);
+                    break;
+
                 case 3:
                     ListItems();
                     break;
@@ -82,7 +89,7 @@ namespace FinancialManegementConsole
             {
                 foreach (var item in account.Items)
                 {
-                    Console.WriteLine(item.PostDate.ToString() + item.Id.ToString() +" "+ item.Type + " " + item.Category.ToString() + " " + item.Category.ToString() + " " + item.Desctiption + " " + item.Amount);
+                    Console.WriteLine(item.PostDate.ToString() + item.ID.ToString() +" "+ item.Type + " " + item.Category.ToString() + " " + item.Category.ToString() + " " + item.Desctiption + " " + item.Amount);
                 }
             }
 

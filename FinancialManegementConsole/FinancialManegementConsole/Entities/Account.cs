@@ -27,17 +27,12 @@ namespace FinancialManegementConsole.Entities
 
      
 
-        /*public void RemoveItem(int id)
+        public void RemoveItem(string id)
         {
-            foreach (Item item in Items)
-            {
-                if (item.Id == id)
-                {
-                    Items.Remove(item);
-                }
-            }
+            file.RemoveItem(id.ToString());
+
         }
-        */
+        
         public void UpdateBalance(Item item)
         {
             Balance += (item.Type == 0) ? -item.Amount : item.Amount;
