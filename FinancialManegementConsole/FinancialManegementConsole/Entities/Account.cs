@@ -34,16 +34,23 @@ namespace FinancialManegementConsole.Entities
             {
                 if(item.ID.ToString() == id)
                 {
-                    Items.Remove(item); break;
+                    
+                    Items.Remove(item);
+
+                    item.Amount = item.Amount * -1;
+                    UpdateBalance(item); break;
+                    
                 }
             }
             
             file.RemoveItem(id.ToString());
+           
 
         }
         
         public void UpdateBalance(Item item)
         {
+
             Balance += (item.Type == 0) ? -item.Amount : item.Amount;
         }
 
