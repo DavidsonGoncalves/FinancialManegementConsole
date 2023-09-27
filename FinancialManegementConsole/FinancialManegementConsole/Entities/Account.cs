@@ -1,4 +1,5 @@
-﻿
+﻿using FinancialManegementConsole.Entities.Enums;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace FinancialManegementConsole.Entities
@@ -8,7 +9,7 @@ namespace FinancialManegementConsole.Entities
         
         public string Name { get; private set; }
         public double Balance { get; private set; }
-       
+        public bool Started { get; private set; }
         public List<Item> Items { get; private set; } = new List<Item>();
         private FilesData file = new FilesData();
         public Account(int id, string name, double balance)
@@ -16,6 +17,24 @@ namespace FinancialManegementConsole.Entities
             
             Name = name;
             Balance = balance;
+        }
+
+        public void StartAccount()
+        {
+            string line;
+            var sr = file.ReadFile();
+            using(sr)
+            {
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] aux = line.Split(';');
+                    Item item = new Item(DateTime.Parse(aux[0]), (Type_item)Enum.Parse(typeof(Type_item), aux[1]), aux[2], (Category)Enum.Parse(typeof(Category), aux[3]), double.Parse(aux[4]), Guid.Parse(aux[5]));
+                    Items.Add(item);
+                    UpdateBalance(item);
+                }
+            }
+            Started = true;
+            
         }
 
        public void AddItem(Item item)

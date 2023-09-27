@@ -15,19 +15,19 @@ namespace FinancialManegementConsole.Entities
         public DateTime PostDate { get; set; }
 
 
-        public Item(DateTime postDate, Type_item type, string desctiption, Category category, double amount)
+        public Item(DateTime postDate, Type_item type, string desctiption, Category category, double amount, Guid id)
         {
             Type = type;
             Desctiption = desctiption;
             Category = category;
             Amount = amount;
             PostDate = postDate;
-            ID = Guid.NewGuid();
+            ID = id;
         }
 
         public override string ToString()
         {
-            return $" {PostDate} ; {Type} ; {Category} ; {Desctiption} ; {Amount} ; {ID}";
+            return $" {PostDate};{Type};{Desctiption};{Category};{Amount};{ID}";
         }
     }
 }

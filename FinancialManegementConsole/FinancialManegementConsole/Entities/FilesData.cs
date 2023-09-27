@@ -73,9 +73,13 @@ namespace FinancialManegementConsole.Entities
                 File.Delete(temppath + @"\TempFile.txt");
             }
             
-            
+        }
 
+        public StreamReader ReadFile()
+        {
+            StreamReader sr = new StreamReader(FilePath + @"\Items.txt");
            
+            return sr;
         }
     }
 }

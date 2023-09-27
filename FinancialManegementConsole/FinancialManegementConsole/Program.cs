@@ -11,7 +11,13 @@ namespace FinancialManegementConsole
        static Account account = new Account(01, "account1", 0.00);
         static void Main(string[] args)
         {
+            if (!account.Started)
+            {
+                account.StartAccount();
+            }
             AccountConsole();
+            
+            
             int option = int.Parse(Console.ReadLine());
 
             switch(option)
@@ -32,8 +38,12 @@ namespace FinancialManegementConsole
                     double amount = double.Parse(Console.ReadLine());
 
                     Console.Write("Add some description: ");
+                    
                     string description = Console.ReadLine();
-
+                    description = (description == "") ? "NULL" : description;
+                    
+                       
+                    
                     Console.Write("Is a recurret item? (s/n)");
                     string op = Console.ReadLine();
                     if (op =="s")
@@ -43,14 +53,14 @@ namespace FinancialManegementConsole
                         int qtdMonths = int.Parse(Console.ReadLine());
                         for (int i = 0; i<qtdMonths;i++)
                         {
-                            account.AddItem(new Item(date, (Type_item)Enum.Parse(typeof(Type_item), type), description, (Category)Enum.Parse(typeof(Category), category), amount));
+                            account.AddItem(new Item(date, (Type_item)Enum.Parse(typeof(Type_item), type), description, (Category)Enum.Parse(typeof(Category), category), amount, Guid.NewGuid()));
                             date = date.AddMonths(1);
                            
                         }
                     }
                     else
                     {
-                       account.AddItem(new Item(date, (Type_item)Enum.Parse(typeof(Type_item), type), description, (Category)Enum.Parse(typeof(Category), category), amount));
+                       account.AddItem(new Item(date, (Type_item)Enum.Parse(typeof(Type_item), type), description, (Category)Enum.Parse(typeof(Category), category), amount, Guid.NewGuid()));
                     }
                     break;
 
@@ -89,7 +99,8 @@ namespace FinancialManegementConsole
             {
                 foreach (var item in account.Items)
                 {
-                    Console.WriteLine(item.PostDate.ToString() + item.ID.ToString() +" "+ item.Type + " " + item.Category.ToString() + " " + item.Category.ToString() + " " + item.Desctiption + " " + item.Amount);
+                    //Console.WriteLine(item.PostDate.ToString() + item.ID.ToString() +" "+ item.Type + " " + item.Category.ToString() + " " + item.Category.ToString() + " " + item.Desctiption + " " + item.Amount);
+                    Console.WriteLine(item);
                 }
             }
 
