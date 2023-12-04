@@ -73,6 +73,10 @@ namespace FinancialManegementConsole
                 case 3:
                     ListItems();
                     break;
+
+                case 4:
+                    account.ExportCSV();
+                    break;
             }
             Main(args);
 
@@ -93,6 +97,7 @@ namespace FinancialManegementConsole
                 Console.WriteLine("1- Add Item");
                 Console.WriteLine("2- Remove Item");
                 Console.WriteLine("3- ListItem");
+                Console.WriteLine("4- export a csv File");
             }
 
             static void ListItems()

@@ -66,13 +66,21 @@ namespace FinancialManegementConsole.Entities
            
 
         }
+
+        public void ExportCSV()
+        {
+            file.CreateCsv();
+
+        }
         
         public void UpdateBalance(Item item)
         {
-
-            Balance += (item.Type == 0) ? -item.Amount : item.Amount;
+            if (item.PostDate.Date <= DateTime.Now.Date)
+            {
+                {
+                    Balance += (item.Type == 0) ? -item.Amount : item.Amount;
+                }
+            }
         }
-
-        
     }
 }

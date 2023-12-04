@@ -12,7 +12,7 @@ namespace FinancialManegementConsole.Entities
         public FilesData() 
         {
             // C:\Users\Deivão\OneDrive - Educacional\Documentos\Personal\Projects\FinancialManegementConsole\FinancialManegementConsole\FinancialManegementConsole\files\Items
-            FilePath = new DirectoryInfo(@"C:\Users\davidsoncgoncal\OneDrive - Educacional\Documentos\Personal\Projects\FinancialManegementConsole\FinancialManegementConsole\FinancialManegementConsole\files\Items");
+            FilePath = new DirectoryInfo(@"C:\Users\Deivão\OneDrive - Educacional\Documentos\Personal\Projects\FinancialManegementConsole\FinancialManegementConsole\FinancialManegementConsole\files\Items");
             LogPath = new DirectoryInfo(@"C:\Users\Deivão\OneDrive - Educacional\Documentos\Personal\Projects\FinancialManegementConsole\FinancialManegementConsole\FinancialManegementConsole\files");
         }
 
@@ -75,6 +75,10 @@ namespace FinancialManegementConsole.Entities
             
         }
 
+        public void CreateCsv()
+        {
+            File.Copy(FilePath + @"\Items.txt", FilePath + @"\Items.csv");
+        }
         public StreamReader ReadFile()
         {
             StreamReader sr = new StreamReader(FilePath + @"\Items.txt");
