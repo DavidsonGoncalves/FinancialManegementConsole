@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection.Metadata;
 
 namespace FinancialManegementConsole.Entities
@@ -18,72 +19,141 @@ namespace FinancialManegementConsole.Entities
 
         public void SaveItem(Item item) 
         {
-            if (!FilePath.Exists)
+            try
             {
-                FilePath.Create();
-            }
+                if (!FilePath.Exists)
+                {
+                    FilePath.Create();
+                }
 
-            if(!File.Exists(FilePath + @"\Items.txt"))
-            {
-                
-                File.Create(FilePath + @"\Items.txt").Close();
-            }
+                if (!File.Exists(FilePath + @"\Items.txt"))
+                {
 
-            using (StreamWriter sw = File.AppendText(FilePath + @"\Items.txt"))
+                    File.Create(FilePath + @"\Items.txt").Close();
+                }
+
+                using (StreamWriter sw = File.AppendText(FilePath + @"\Items.txt"))
+                {
+
+                    sw.WriteLine(item);
+                    SaveLog("- INFO: Item " + item.ID + " Added");
+                }
+            }catch(DirectoryNotFoundException e) 
             {
-                sw.WriteLine(item);
+                SaveLog("- Errror: " + e.Message);
+                throw new Exception("- Errror: " +e.Message);
             }
+          
+
+        }
+
+        public void SaveLog(string text)
+        {
+            try
+            {
+                if (!LogPath.Exists)
+                {
+                    LogPath.Create();
+                }
+                if (!File.Exists(LogPath + @$"\log" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt"))
+                {
+
+                    File.Create(LogPath + @$"\log" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt").Close();
+                }
+
+
+                {
+                    using (StreamWriter sw = File.AppendText(LogPath + @$"\log" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt"))
+                    {
+
+                        sw.WriteLine("[" + DateTime.Now + "] - " + text);
+                    }
+                }
+            }
+            catch (DirectoryNotFoundException e)
+            {
+
+                throw new Exception("- Errror: " + e.Message);
+            }
+            
 
         }
 
         public void RemoveItem(string id)
         {
-            DirectoryInfo temppath = new DirectoryInfo(FilePath + @"\Temp");
-          
-            if (!temppath.Exists) 
+            try
             {
-                temppath.Create();
-            }
-            if (!temppath.Exists)
-            {
-                using (File.Create(temppath + @"\TempFile.txt"));
-                
-            }
+                DirectoryInfo temppath = new DirectoryInfo(FilePath + @"\Temp");
 
-            using (StreamReader sr = new StreamReader(FilePath + @"\Items.txt"))
-           
-            using (StreamWriter sw = File.AppendText(temppath + @"\TempFile.txt"))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                if (!temppath.Exists)
                 {
-                    if (!line.Contains(id))
+                    temppath.Create();
+                }
+                if (!temppath.Exists)
+                {
+                    using (File.Create(temppath + @"\TempFile.txt")) ;
+
+                }
+
+                using (StreamReader sr = new StreamReader(FilePath + @"\Items.txt"))
+
+                using (StreamWriter sw = File.AppendText(temppath + @"\TempFile.txt"))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        sw.WriteLine(line);
+                        if (!line.Contains(id))
+                        {
+                            sw.WriteLine(line);
+                        }
                     }
                 }
+                
+                File.Delete(FilePath + @"\Items.txt");
+
+                File.Move(temppath + @"\TempFile.txt", FilePath + @"\Items.txt");
+                if (File.Exists(temppath.ToString()))
+                {
+                    File.Delete(temppath + @"\TempFile.txt");
+                }
+                SaveLog("- INFO: Item " + id + " removed");
             }
-
-
-            File.Delete(FilePath + @"\Items.txt");
-
-            File.Move(temppath + @"\TempFile.txt", FilePath + @"\Items.txt");
-            if (File.Exists(temppath.ToString()))
+            catch (DirectoryNotFoundException e)
             {
-                File.Delete(temppath + @"\TempFile.txt");
+                SaveLog("- Errror: " + e.Message);
+                throw new Exception("- Errror: " + e.Message);
             }
             
         }
 
         public void CreateCsv()
         {
-            File.Copy(FilePath + @"\Items.txt", FilePath + @"\Items.csv");
+            try
+            {
+                File.Copy(FilePath + @"\Items.txt", FilePath + @"\Items"+DateTime.Now.Second.ToString()+".csv");
+                SaveLog("INFO: csv file exported to: " + FilePath);
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                SaveLog(" - Errror: " + e.Message);
+                throw new Exception("- Errror: " + e.Message);
+            }
+
         }
         public StreamReader ReadFile()
         {
-            StreamReader sr = new StreamReader(FilePath + @"\Items.txt");
-           
-            return sr;
+            try
+            {
+                StreamReader sr = new StreamReader(FilePath + @"\Items.txt");
+
+                return sr;
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                SaveLog("- Errror: " + e.Message);
+                throw new Exception("- Errror: " + e.Message);
+            }
+
         }
     }
 }
